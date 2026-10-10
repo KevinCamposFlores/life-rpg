@@ -1,0 +1,20 @@
+service:
+
+  postgres:
+    image: postgres:17
+    container_name: life-rpg-postgres
+
+
+  evironment:
+    POSTGRES_DB: life_rpg_db
+    POSTGRES_USER: liferpg
+    POSTGRES_PASSWORD: liferpg123
+ 
+  port:
+    -"5433:5432"
+
+  volumes:
+    - life_rpg_postgres_data:/var/lib/postgresql/data
+
+volumes:
+  life_rpg_postgres_data
