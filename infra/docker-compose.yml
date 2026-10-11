@@ -1,20 +1,24 @@
-service:
-
+services: # No es service
   postgres:
     image: postgres:17
     container_name: life-rpg-postgres
 
+    environment: # No es evironment
+      POSTGRES_DB: life_rpg_db
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
 
-  evironment:
-    POSTGRES_DB: life_rpg_db
-    POSTGRES_USER: liferpg
-    POSTGRES_PASSWORD: liferpg123
- 
-  port:
-    -"5433:5432"
+    ports: # No es port
+      - "5433:5432"
 
-  volumes:
-    - life_rpg_postgres_data:/var/lib/postgresql/data
+    volumes:
+      - life_rpg_postgres_data:/var/lib/postgresql/data
+
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USERNAME} -d life_rpg_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
 volumes:
-  life_rpg_postgres_data
+  life_rpg_postgres_data: # Faltaban los dos puntos

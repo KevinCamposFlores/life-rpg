@@ -1,9 +1,6 @@
 package com.liferpg.mission.common.exception;
 
-import com.liferpg.mission.area.exception.AreaAlreadyStateDesactiveException;
-import com.liferpg.mission.area.exception.AreaNotFoundException;
-import com.liferpg.mission.area.exception.CodeAreaAlreadyExistsException;
-import com.liferpg.mission.area.exception.NameAreaAlreadyExistsException;
+import com.liferpg.mission.area.exception.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -81,6 +78,16 @@ public class GlobalExceptionHandler {
                         "Validation failed",
                         errors));
 
+    }
+
+    @ExceptionHandler(AreaIsDesactiveException.class)
+    public ResponseEntity<ErrorResponse> handlerAreaIsDeactivatedException( AreaIsDesactiveException exception){
+        return ResponseEntity.status(HttpStatus.CONFLICT)
+                .body(new ErrorResponse(
+                        HttpStatus.CONFLICT.value(),
+                        ErrorCode.AREA_IS_DEACTIVATED,
+                        exception.getMessage()
+                ));
     }
 
 }
