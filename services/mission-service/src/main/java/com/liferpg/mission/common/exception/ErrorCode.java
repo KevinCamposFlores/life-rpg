@@ -9,7 +9,9 @@ public enum ErrorCode {
     VALIDATION_ERROR,
     ARE_NOT_FOUND,
 
-    AREA_IS_DEACTIVATED
+    AREA_IS_DEACTIVATED,
+
+    VALUE_IS_LESS_TARGET_VALUE
 
 
 }
