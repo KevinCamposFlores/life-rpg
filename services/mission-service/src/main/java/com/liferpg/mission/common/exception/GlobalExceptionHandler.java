@@ -1,6 +1,7 @@
 package com.liferpg.mission.common.exception;
 
 import com.liferpg.mission.area.exception.*;
+import com.liferpg.mission.missionlog.exception.ValueIsLessThanTragetValueException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -86,6 +87,16 @@ public class GlobalExceptionHandler {
                 .body(new ErrorResponse(
                         HttpStatus.CONFLICT.value(),
                         ErrorCode.AREA_IS_DEACTIVATED,
+                        exception.getMessage()
+                ));
+    }
+
+    @ExceptionHandler(ValueIsLessThanTragetValueException.class)
+    public ResponseEntity<ErrorResponse> handlerValueIsLesTargetValueException( ValueIsLessThanTragetValueException exception){
+        return ResponseEntity.status(HttpStatus.CONFLICT)
+                .body(new ErrorResponse(
+                        HttpStatus.CONFLICT.value(),
+                        ErrorCode.VALUE_IS_LESS_TARGET_VALUE,
                         exception.getMessage()
                 ));
     }
