@@ -10,7 +10,7 @@ public class MissionMapper {
 
     public static Mission toEntity(CreateMissionRequest request, Area area){
         Mission mission = new Mission();
-        mission.setAreaId(area);
+        mission.setArea(area);
         mission.setName(request.name());
         mission.setDescription(request.description());
         mission.setXpReward(request.xpReward());
@@ -26,8 +26,8 @@ public class MissionMapper {
     public static MissionResponse toResponse(Mission mission){
 
         return new MissionResponse(mission.getId(),
-                mission.getAreaId().getId(),
-                mission.getAreaId().getName(),
+                mission.getArea().getId(),
+                mission.getArea().getName(),
                 mission.getName(),
                 mission.getDescription(),
                 mission.getXpReward(),
