@@ -6,6 +6,7 @@ import com.liferpg.mission.area.service.AreaService;
 import com.liferpg.mission.mission.dto.CreateMissionRequest;
 import com.liferpg.mission.mission.dto.MissionResponse;
 import com.liferpg.mission.mission.entity.Mission;
+import com.liferpg.mission.mission.exception.MissionNotFoundException;
 import com.liferpg.mission.mission.mapper.MissionMapper;
 import com.liferpg.mission.mission.projection.MissionResponseProjection;
 import com.liferpg.mission.mission.repository.MissionRepository;
@@ -45,6 +46,18 @@ public class MissionService {
     public List<MissionResponse> findMissionAll(){
       return  missionRepository.findMissionAll().stream().map(mission -> MissionMapper.toResponse(mission)).toList();
     }
+
+    @Transactional
+    public MissionResponseProjection findByIdMissionWithArea(Long id){
+        return missionRepository.findByIdMissionWithArea(id).orElseThrow(()-> new MissionNotFoundException("Mission not found"));
+    }
+
+    public Mission findByIdMission(Long id){
+       return missionRepository.findById(id).orElseThrow(() -> new MissionNotFoundException("Mission not found"));
+
+    }
+
+
 
 
 

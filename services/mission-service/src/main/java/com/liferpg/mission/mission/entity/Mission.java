@@ -24,7 +24,7 @@ public class Mission {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "area_id", nullable = false)
-    private Area areaId;
+    private Area area;
 
     @Column(name = "name", nullable = false)
     private String name;
