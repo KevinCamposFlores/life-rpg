@@ -1,10 +1,12 @@
 package com.liferpg.mission.missionlog.mapper;
 
 import com.liferpg.mission.missionlog.dto.CreateMissionLogRequest;
+import com.liferpg.mission.missionlog.dto.CurrentWeeklyMissionResponse;
 import com.liferpg.mission.missionlog.dto.MissionLogResponse;
 import com.liferpg.mission.missionlog.entity.MissionLog;
 import com.liferpg.mission.weeklyMission.entity.WeeklyMission;
 import com.liferpg.mission.weeklyMission.entity.WeeklyMissionStatus;
+import com.liferpg.mission.weeklyMission.projection.CurrentWeeklyMissionProjection;
 
 import java.time.LocalDateTime;
 
@@ -40,4 +42,6 @@ public class MissionLogMapper {
                 targetCount,
                 weeklyStatus);
     }
+
+
 }
