@@ -2,9 +2,13 @@ package com.liferpg.mission.weeklyMission.mapper;
 
 import com.liferpg.mission.mission.entity.Mission;
 import com.liferpg.mission.mission.projection.MissionResponseProjection;
+import com.liferpg.mission.missionlog.dto.CurrentWeeklyMissionResponse;
 import com.liferpg.mission.weeklyMission.dto.CreateWeeklyMissions;
 import com.liferpg.mission.weeklyMission.dto.WeeklyMissionsResponse;
 import com.liferpg.mission.weeklyMission.entity.WeeklyMission;
+import com.liferpg.mission.weeklyMission.projection.CurrentWeeklyMissionProjection;
+
+import java.util.List;
 
 public class WeeklyMissionsMapper {
 
@@ -32,5 +36,23 @@ public class WeeklyMissionsMapper {
         );
 
 
+    }
+    public static CurrentWeeklyMissionResponse toCurrentResponse(CurrentWeeklyMissionProjection currentWeeklyMissionProjection ){
+        return new CurrentWeeklyMissionResponse(
+                currentWeeklyMissionProjection.getWeeklyMissionId(),
+                currentWeeklyMissionProjection.getMissionId(),
+                currentWeeklyMissionProjection.getMissionName(),
+                currentWeeklyMissionProjection.getAreaId(),
+                currentWeeklyMissionProjection.getAreaName(),
+                currentWeeklyMissionProjection.getTargetValue(),
+                currentWeeklyMissionProjection.getUnit(),
+                currentWeeklyMissionProjection.getXpReward(),
+                currentWeeklyMissionProjection.getCompletedCount(),
+                currentWeeklyMissionProjection.getCompletedToday(),
+                currentWeeklyMissionProjection.getTargetCount(),
+                currentWeeklyMissionProjection.getStatus(),
+                currentWeeklyMissionProjection.getWeekStart(),
+                currentWeeklyMissionProjection.getWeekEnd()
+        );
     }
 }

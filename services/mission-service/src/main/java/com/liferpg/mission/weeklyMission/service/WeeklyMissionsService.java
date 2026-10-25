@@ -3,6 +3,7 @@ package com.liferpg.mission.weeklyMission.service;
 import com.liferpg.mission.mission.entity.Mission;
 import com.liferpg.mission.mission.exception.MissionInactiveException;
 import com.liferpg.mission.mission.service.MissionService;
+import com.liferpg.mission.missionlog.dto.CurrentWeeklyMissionResponse;
 import com.liferpg.mission.weeklyMission.dto.CreateWeeklyMissions;
 import com.liferpg.mission.weeklyMission.dto.WeeklyMissionsResponse;
 import com.liferpg.mission.weeklyMission.entity.WeeklyMission;
@@ -10,6 +11,7 @@ import com.liferpg.mission.weeklyMission.entity.WeeklyMissionStatus;
 import com.liferpg.mission.weeklyMission.exception.InvalidWeekRangeException;
 import com.liferpg.mission.weeklyMission.exception.WeeklyMissionsNotFountException;
 import com.liferpg.mission.weeklyMission.mapper.WeeklyMissionsMapper;
+import com.liferpg.mission.weeklyMission.projection.CurrentWeeklyMissionProjection;
 import com.liferpg.mission.weeklyMission.repository.WeeklyMissionsRepository;
 import org.springframework.stereotype.Service;
 
@@ -52,6 +54,15 @@ public class WeeklyMissionsService {
        WeeklyMission weeklyMissions = weeklyMissionsRepository.findById(id).orElseThrow(() -> new WeeklyMissionsNotFountException("Weekly mission not found : " + id ));
 
        return weeklyMissions;
+    }
+
+    public List<CurrentWeeklyMissionResponse> currentWeeklyMissionProjectionsList(){
+
+       return weeklyMissionsRepository.findCurrentWeeklyMissions().stream()
+               .map(current -> {
+                   return WeeklyMissionsMapper.toCurrentResponse(current)
+                           ;}).toList();
+
     }
 
 }

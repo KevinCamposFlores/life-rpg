@@ -1,14 +1,13 @@
 package com.liferpg.mission.missionlog.service;
 
-import com.liferpg.mission.mission.entity.Mission;
 import com.liferpg.mission.mission.entity.MissionType;
-import com.liferpg.mission.mission.mapper.MissionMapper;
 import com.liferpg.mission.missionlog.dto.CreateMissionLogRequest;
 import com.liferpg.mission.missionlog.dto.MissionLogResponse;
 import com.liferpg.mission.missionlog.entity.MissionLog;
 import com.liferpg.mission.missionlog.exception.MissionWasCompletedTodayException;
 import com.liferpg.mission.missionlog.exception.ValueIsLessThanTragetValueException;
 import com.liferpg.mission.missionlog.mapper.MissionLogMapper;
+import com.liferpg.mission.weeklyMission.projection.CurrentWeeklyMissionProjection;
 import com.liferpg.mission.missionlog.repository.MissionLogRepository;
 import com.liferpg.mission.weeklyMission.entity.WeeklyMission;
 import com.liferpg.mission.weeklyMission.entity.WeeklyMissionStatus;
@@ -20,6 +19,7 @@ import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 public class MissionLogService {
@@ -84,6 +84,9 @@ public class MissionLogService {
     public boolean existsByWeeklyMission_IdAndCompletedAtGreaterThanEqualAndCompletedAtLessThan(Long weeklyMissionId, LocalDateTime begin, LocalDateTime end){
         return missionLogRepository.existsByWeeklyMission_IdAndCompletedAtGreaterThanEqualAndCompletedAtLessThan(weeklyMissionId, begin, end);
     }
+
+
+
 
 
 }

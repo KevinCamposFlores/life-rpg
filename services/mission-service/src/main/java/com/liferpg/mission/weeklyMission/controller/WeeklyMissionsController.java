@@ -1,7 +1,9 @@
 package com.liferpg.mission.weeklyMission.controller;
 
+import com.liferpg.mission.missionlog.dto.CurrentWeeklyMissionResponse;
 import com.liferpg.mission.weeklyMission.dto.CreateWeeklyMissions;
 import com.liferpg.mission.weeklyMission.dto.WeeklyMissionsResponse;
+import com.liferpg.mission.weeklyMission.projection.CurrentWeeklyMissionProjection;
 import com.liferpg.mission.weeklyMission.service.WeeklyMissionsService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -30,6 +32,11 @@ public class WeeklyMissionsController {
     public ResponseEntity<List<WeeklyMissionsResponse>> findAllWeeklyMissions(){
       List<WeeklyMissionsResponse> findAll =  weeklyMissionsService.findAllWeeklyMissions();
     return ResponseEntity.ok(findAll);
+    }
+
+    @GetMapping("/current")
+    public ResponseEntity<List<CurrentWeeklyMissionResponse>> findCurrentWeeklyMissions(){
+        return ResponseEntity.ok(weeklyMissionsService.currentWeeklyMissionProjectionsList());
     }
 
 }
