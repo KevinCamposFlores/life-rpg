@@ -1,7 +1,6 @@
 package com.liferpg.mission.common.exception;
 
 import com.liferpg.mission.area.exception.*;
-import com.liferpg.mission.missionlog.exception.MissionWasCompletedTodayException;
 import com.liferpg.mission.missionlog.exception.ValueIsLessThanTragetValueException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -98,16 +97,6 @@ public class GlobalExceptionHandler {
                 .body(new ErrorResponse(
                         HttpStatus.CONFLICT.value(),
                         ErrorCode.VALUE_IS_LESS_TARGET_VALUE,
-                        exception.getMessage()
-                ));
-    }
-
-    @ExceptionHandler(MissionWasCompletedTodayException.class)
-    public ResponseEntity<ErrorResponse> handlerMissionWasCompletedTodayException( MissionWasCompletedTodayException exception) {
-        return ResponseEntity.status(HttpStatus.CONFLICT)
-                .body(new ErrorResponse(
-                        HttpStatus.CONFLICT.value(),
-                        ErrorCode.MISSION_ALREADY_COMPLETED_TODAY,
                         exception.getMessage()
                 ));
     }
